@@ -105,9 +105,9 @@
         grid:
           "header body" auto 
           "leftSide body" 1fr
-          "footer footer" auto
-          / 0.8fr 5.5fr; /* Left and right column widths */
-        column-gap: 20px; /* Adds space between leftSide and body */
+          "leftSide footer" auto
+          / 0.5fr 5.5fr; /* Left and right column widths */
+        column-gap: 10px; /* Adds space between leftSide and body */
     }
 
     .rightSide {
