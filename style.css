@@ -17,7 +17,7 @@
   .leftSide {
     grid-area: leftSide;
     background: #f8f9fa;
-    padding: 8px;
+    padding: 6px;
     border-right: 2px solid #ddd;
   }
   
