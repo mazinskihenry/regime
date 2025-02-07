@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 .layout {
     width: 100%;
     display: grid;
