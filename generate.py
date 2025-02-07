@@ -2,7 +2,7 @@
 import os
 
 ENTRIES_FOLDER = "entries"
-OUTPUT_FILE = "compiled.html"
+OUTPUT_FILE = "index.html"
 
 def main():
     # 1. Get all .txt filenames in 'entries/' (skipping non-txt)
