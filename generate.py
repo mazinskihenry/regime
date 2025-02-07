@@ -30,7 +30,7 @@ def main():
         # Left side
         out.write('  <div class="leftSide">Left side content here</div>\n')
 
-        # Body area - here’s where we’ll insert text from .txt files
+        # Body area
         out.write('  <div class="body">\n')
         for txt_file in txt_files:
             file_path = os.path.join(ENTRIES_FOLDER, txt_file)
