@@ -10,6 +10,10 @@
 }
   
 @media (max-width: 768px) {
+    .rightSide {
+        display: none;  /* Hides the rightSide element */
+    }
+
     .layout {
         display: flex;
         flex-direction: column;
@@ -33,10 +37,6 @@
         max-width: 100%;
         margin: auto;
         padding: 10px;
-    }
-
-    .rightSide {
-        display: none; /* Hide image on mobile */
     }
 }
 

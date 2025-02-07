@@ -81,6 +81,16 @@ def main():
         out.write('    <img src="WhiteHouse.jpg" alt="Description" class="fixed-image">\n')
         out.write('  </div>\n')
 
+        out.write('  <div class="rightSide">\n')
+        out.write('    <img src="your-image.jpg" alt="Description" class="fixed-image">\n')
+        out.write('  </div>\n')
+
+        # Add this check to remove .rightSide for mobile users
+        out.write('<script>\n')
+        out.write('  if (window.innerWidth <= 768) {\n')
+        out.write('    document.querySelector(".rightSide").remove();\n')
+        out.write('  }\n')
+        out.write('</script>\n')
 
         # Footer
         out.write('  <div class="footer"></div>\n')
