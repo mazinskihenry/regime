@@ -81,10 +81,6 @@ def main():
         out.write('    <img src="WhiteHouse.jpg" alt="Description" class="fixed-image">\n')
         out.write('  </div>\n')
 
-        out.write('  <div class="rightSide">\n')
-        out.write('    <img src="your-image.jpg" alt="Description" class="fixed-image">\n')
-        out.write('  </div>\n')
-
         # Add this check to remove .rightSide for mobile users
         out.write('<script>\n')
         out.write('  if (window.innerWidth <= 768) {\n')
