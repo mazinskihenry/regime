@@ -106,7 +106,8 @@
           "header body" auto 
           "leftSide body" 1fr
           "footer footer" auto
-          / 0.5fr 5.5fr; /* Expands .body to take the full right space */
+          / 0.5fr 5.5fr; /* Left and right column widths */
+        column-gap: 20px; /* Adds space between leftSide and body */
     }
 
     .rightSide {
@@ -115,7 +116,11 @@
 
     .body {
         width: 100%;
-        max-width: none; /* Ensure it can expand */
+        max-width: none;
+    }
+
+    .leftSide {
+        padding-right: 10px; /* Optional: Adds more spacing within .leftSide */
     }
 }
 
