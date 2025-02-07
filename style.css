@@ -103,14 +103,20 @@
   @media (max-width: 768px) {
     .layout {
         grid:
-          "header body body" auto 
-          "leftSide body body" 1fr
-          "footer footer footer" auto
-          / 0.5fr 4fr 0fr; /* Adjusted column widths for mobile */
+          "header body" auto 
+          "leftSide body" 1fr
+          "footer footer" auto
+          / 0.5fr 5.5fr; /* Expands .body to take the full right space */
     }
 
     .rightSide {
         display: none;  /* Completely hide .rightSide */
     }
+
+    .body {
+        width: 100%;
+        max-width: none; /* Ensure it can expand */
+    }
 }
+
   
