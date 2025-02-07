@@ -53,6 +53,7 @@ def main():
         out.write("  </div>\n")
 
         # Body area with each section wrapped in its own container
+        # Body area with each section wrapped in its own container
         out.write('  <div class="body">\n')
         for row in rows:
             filename = row["filename"]
@@ -69,9 +70,9 @@ def main():
             # Convert title into a valid ID
             id_name = generate_id(title)
 
-            # Wrap the header and content in a section container
-            out.write('    <section class="section">\n')
-            out.write(f'      <h2 id="{id_name}">{title}</h2>\n')
+            # Wrap the header and content in a section container with the id on the section
+            out.write(f'    <section class="section" id="{id_name}">\n')
+            out.write(f'      <h2>{title}</h2>\n')
             out.write(f'      <div class="entry">{content.replace("\n", "<br>\n")}</div>\n')
             out.write('    </section>\n')
         out.write('  </div>\n')  # close .body
