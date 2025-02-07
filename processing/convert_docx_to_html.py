@@ -7,18 +7,18 @@ For each line, the text and any associated hyperlink URLs are combined
 into a single HTML <p> element, with the text on the first line and the
 hyperlink(s) embedded as iframes below (separated by <br>).
 
-After conversion, the script performs two CSV updates:
-  1. It inserts a new row into the master CSV file (located in the directory
-     above the scripts folder) as the second row. This row contains:
-       - Column 1: The name of the generated HTML file.
-       - Column 2: The first non-empty line of text from the DOCX.
-  2. It generates a separate CSV file (named using the HTML file's base name with
-     a "_lines.csv" suffix) where each row represents one new line from the DOCX.
-     For each row:
-       - Column 1: The text from the DOCX line.
-       - Column 2: "Wayback" if the line contains at least one link; otherwise "None".
-       - Column 3: The actual link (if multiple links exist, they are joined by semicolons);
-                   if there is no link, this is empty.
+After conversion, the script performs one CSV update:
+  It generates a separate CSV file (named using the HTML file's base name with
+  a "_lines.csv" suffix) where each row represents one new line from the DOCX.
+  For each row:
+    - Column 1: The text from the DOCX line.
+    - Column 2: "Wayback" if the line contains at least one link; otherwise "None".
+    - Column 3: The actual link (if multiple links exist, they are joined by semicolons);
+                if there is no link, this is empty.
+
+Additionally, a new folder is created with the name of the HTML document (without its extension).
+The generated HTML file and CSV file are moved into that folder, and the contents of the "tools"
+folder (located in the same directory as this script) are copied into the new folder.
 """
 
 import sys
@@ -26,6 +26,7 @@ import os
 import csv
 import zipfile
 import xml.etree.ElementTree as ET
+import shutil  # For moving and copying files
 
 # Define namespaces for DOCX XML tags.
 NS_W = '{http://schemas.openxmlformats.org/wordprocessingml/2006/main}'
@@ -101,31 +102,6 @@ def process_paragraph_lines(p, rels_mapping):
     flush_line()
     return lines
 
-def update_csv(html_filename, first_line):
-    """
-    Inserts a new row as the second row in the master CSV file (the top row is reserved for headers)
-    with the given html_filename and first_line.
-    """
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    csv_path = os.path.join(script_dir, "..", "files.csv")
-    
-    new_row = [html_filename, first_line]
-    rows = []
-    
-    if os.path.exists(csv_path):
-        with open(csv_path, 'r', newline='', encoding='utf-8') as csvfile:
-            reader = csv.reader(csvfile)
-            rows = list(reader)
-    
-    if rows:
-        rows.insert(1, new_row)
-    else:
-        rows.insert(0, new_row)
-    
-    with open(csv_path, 'w', newline='', encoding='utf-8') as csvfile:
-        writer = csv.writer(csvfile)
-        writer.writerows(rows)
-
 def generate_lines_csv(lines_csv_path, all_line_data):
     """
     Generates a CSV file where each row represents a new line from the DOCX file.
@@ -151,10 +127,11 @@ def convert_docx_to_html(docx_path, html_path):
     with the text on the first line and the URL(s) embedded as iframes below (separated by <br>).
     
     After generating the HTML file, this function:
-      1. Inserts a new row into the master CSV file (as the second row) with the HTML file name
-         and the first non-empty line from the DOCX.
-      2. Generates a CSV file (named using the HTML file's base name plus "_lines.csv") where each row
+      1. Generates a CSV file (named using the HTML file's base name plus "_lines.csv") where each row
          represents one new line from the DOCX.
+      2. Creates a new folder named after the HTML file (without the file extension),
+         moves both the HTML and CSV files into that folder, and copies the contents of the "tools" folder
+         (located in the same directory as this script) into the new folder.
     """
     with zipfile.ZipFile(docx_path) as docx_zip:
         rels_mapping = get_relationships(docx_zip)
@@ -199,20 +176,46 @@ def convert_docx_to_html(docx_path, html_path):
 </body>
 </html>'''
     
+    # Write the HTML file.
     with open(html_path, 'w', encoding='utf-8') as f:
         f.write(html_content)
     
     print(f"Conversion complete! HTML saved to {html_path}")
     
-    html_filename = os.path.basename(html_path)
-    if first_line_text is None:
-        first_line_text = ""
-    update_csv(html_filename, first_line_text)
-    
     # Generate the per-line CSV file.
     lines_csv_path = os.path.splitext(html_path)[0] + "_lines.csv"
     generate_lines_csv(lines_csv_path, all_line_data)
     print(f"Line CSV file saved to {lines_csv_path}")
+    
+    # === New Code: Create a folder for the outputs and copy the contents of the 'tools' folder ===
+    # Determine the new folder name (based on the HTML file's name without extension)
+    base_name = os.path.splitext(os.path.basename(html_path))[0]
+    output_dir = os.path.join(os.path.dirname(html_path), base_name)
+    os.makedirs(output_dir, exist_ok=True)
+    
+    # Define new target paths inside the output directory.
+    new_html_path = os.path.join(output_dir, os.path.basename(html_path))
+    new_csv_path = os.path.join(output_dir, os.path.basename(lines_csv_path))
+    
+    # Move the generated HTML and CSV files into the new folder.
+    shutil.move(html_path, new_html_path)
+    shutil.move(lines_csv_path, new_csv_path)
+    print(f"Moved output files to folder: {output_dir}")
+    
+    # Copy the contents of the 'tools' folder from the script's directory into the new folder.
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    tools_folder = os.path.join(script_dir, "tools")
+    if os.path.exists(tools_folder) and os.path.isdir(tools_folder):
+        for item in os.listdir(tools_folder):
+            s = os.path.join(tools_folder, item)
+            d = os.path.join(output_dir, item)
+            if os.path.isdir(s):
+                shutil.copytree(s, d)
+            else:
+                shutil.copy2(s, d)
+        print(f"Copied contents of 'tools' folder to folder: {output_dir}")
+    else:
+        print("Warning: 'tools' folder not found in the script directory.")
 
 if __name__ == '__main__':
     if len(sys.argv) != 3:

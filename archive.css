@@ -1,0 +1,155 @@
+html {
+    scroll-behavior: smooth;
+  }
+  
+  .layout {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 0.5fr 4fr 1fr; /* Defines three columns */
+      grid-template-rows: auto 1fr auto; /* Defines header, main content, footer */
+      grid-template-areas:
+        "header header header"
+        "leftSide body rightSide"
+        "footer footer footer";
+      gap: 20px;
+      height: 100vh; /* Makes sure the layout spans the full height of the screen */
+  }
+  
+  /* Header */
+  .header {
+      grid-area: header;
+      text-align: center;
+      padding: 15px;
+      background: #f8f9fa;
+      border-bottom: 2px solid #ddd;
+  }
+  
+  .header h1 {
+      margin: 0;
+      font-size: 2.5em;
+  }
+  
+  .header p {
+      margin: 5px 0 0;
+      font-size: 1.2em;
+      font-weight: normal;
+      color: #666;
+  }
+  
+  /* Left Sidebar */
+  .leftSide {
+      grid-area: leftSide;
+      background: #f8f9fa;
+      padding: 10px;
+      border-right: 2px solid #ddd;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      width: 100%; /* Ensures full width within the grid column */
+      display: flex;
+      flex-direction: column;
+  }
+  
+  .leftSide ul {
+      list-style-type: none;
+      padding: 0;
+  }
+  
+  .leftSide li {
+      margin: 5px 0;
+  }
+  
+  .leftSide a {
+      text-decoration: none;
+      color: #007bff;
+  }
+  
+  .leftSide a:hover {
+      text-decoration: underline;
+  }
+  
+  /* Main Content */
+  .body {
+      grid-area: body;
+      padding: 20px;
+      width: 100%;
+      overflow-y: auto; /* Ensures scrolling if content is too large */
+      display: flex;
+      flex-direction: column;
+  }
+  
+  .body h2 {
+      position: sticky;
+      top: 0;
+      background: white;  /* Ensures the title is readable */
+      padding: 10px 10px;
+      z-index: 10;  /* Ensures the title stays above other elements */
+      border-bottom: 2px solid #ddd;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease-in-out;
+  }
+  
+  /* Sections */
+  .section {
+      position: relative;
+      margin-bottom: 2em; /* Optional: spacing between sections */
+  }
+  
+  .section h2 {
+      position: sticky;
+      top: 0;
+      background: white;
+      padding: 10px;
+      border-bottom: 2px solid #ddd;
+      z-index: 1;
+      transition: all 0.3s ease-in-out;
+      scroll-margin-top: 20px; /* Adjust this value as needed */
+  }
+  
+  /* Right Side - Left Blank */
+  .rightSide {
+      grid-area: rightSide;
+      position: relative;
+      background: transparent;
+      display: block;
+  }
+  
+  /* Remove any images in the right side */
+  .fixed-image {
+      display: none;
+  }
+  
+  /* Footer */
+  .footer {
+      grid-area: footer;
+      background: #ffffff;
+      padding: 10px;
+      text-align: center;
+      border-top: 2px solid #ddd;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+      .layout {
+          grid-template-columns: 1fr 5fr; /* Only two columns on smaller screens */
+          grid-template-areas:
+            "header header"
+            "leftSide body"
+            "footer footer";
+      }
+  
+      .rightSide {
+          display: none;  /* Completely hide .rightSide on small screens */
+      }
+  
+      .body {
+          width: 100%;
+          max-width: none;
+      }
+  
+      .leftSide {
+          padding-right: 5px;
+      }
+  }
+  

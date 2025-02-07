@@ -4,8 +4,8 @@ import os
 import csv
 import re
 
-CSV_FILE = "files.csv"        # CSV with columns: filename, title
-ENTRIES_FOLDER = "entries"    # Folder containing .txt files
+CSV_FILE = "files.csv"        # CSV with columns: filename, title, archive
+ENTRIES_FOLDER = "website/entries"    # Folder containing .txt files
 OUTPUT_FILE = "website/index.html"    # The final generated HTML file
 
 def generate_id(title):
@@ -53,7 +53,6 @@ def main():
         out.write("  </div>\n")
 
         # Body area with each section wrapped in its own container
-        # Body area with each section wrapped in its own container
         out.write('  <div class="body">\n')
         for row in rows:
             filename = row["filename"]
@@ -73,11 +72,14 @@ def main():
             # Start the section container with the id on the section
             out.write(f'    <section class="section" id="{id_name}">\n')
             
-            # Check if an archive file is provided
+            # Check if an archive file is provided.
+            # If archive is not "0", then assume it contains only a base file name.
+            # Build the full archive link as:
+            # archive/{archiveName}/{archiveName}.html
             archive = row.get("archive", "0")
             if archive != "0":
-                # Add an archive link with the text " - Archive" after the title
-                out.write(f'      <h2>{title} <a href="{archive}">- Archive</a></h2>\n')
+                archive_link = f"archive/{archive}/{archive}.html"
+                out.write(f'      <h2>{title} <a href="{archive_link}">- Archive</a></h2>\n')
             else:
                 out.write(f'      <h2>{title}</h2>\n')
             

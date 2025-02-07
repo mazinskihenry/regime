@@ -1,5 +1,6 @@
 filename,title,archive
-day18.txt,February 6 - Day 18,testDocument_lines.html
+TestFile.txt,Test File,testDocument_lines
+day18.txt,February 6 - Day 18,0
 day17.txt,February 5 - Day 17,0
 day16.txt,February 4 - Day 16,0
 day15.txt,February 3 - Day 15,0
