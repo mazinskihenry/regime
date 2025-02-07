@@ -9,6 +9,37 @@
     gap: 0px;
 }
   
+@media (max-width: 768px) {
+    .layout {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .header {
+        text-align: center;
+        padding: 10px;
+    }
+
+    .leftSide {
+        width: 100%;
+        order: 2; /* Moves TOC below the header */
+        text-align: center;
+        padding: 10px;
+    }
+
+    .body {
+        order: 1;
+        width: 90%;
+        max-width: 100%;
+        margin: auto;
+        padding: 10px;
+    }
+
+    .rightSide {
+        display: none; /* Hide image on mobile */
+    }
+}
+
   .header {
     text-align: center;
     padding: 15px;
