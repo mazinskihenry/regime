@@ -183,7 +183,7 @@ def convert_docx_to_html(docx_path, html_path):
     print(f"Conversion complete! HTML saved to {html_path}")
     
     # Generate the per-line CSV file.
-    lines_csv_path = os.path.splitext(html_path)[0] + "_lines.csv"
+    lines_csv_path = os.path.splitext(html_path)[0] + ".csv"
     generate_lines_csv(lines_csv_path, all_line_data)
     print(f"Line CSV file saved to {lines_csv_path}")
     
