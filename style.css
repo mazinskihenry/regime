@@ -90,7 +90,6 @@
     scroll-margin-top: 20px; /* Adjust this value as needed */
 }
 
-
   .rightSide {
     grid-area: rightSide;
     position: fixed;
