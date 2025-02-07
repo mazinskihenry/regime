@@ -31,10 +31,10 @@ def main():
         out.write('<section class="layout">\n')
 
         # Header area
-        out.write('  <div class="header"></div>\n')
+        out.write('  <div class="header"> </div>\n')
 
         # Left side
-        out.write('  <div class="leftSide"></div>\n')
+        out.write('  <div class="leftSide"> </div>\n')
 
         # Body area
         out.write('  <div class="body">\n')
