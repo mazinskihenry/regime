@@ -1,0 +1,33 @@
+name: Build and Commit Entries
+
+on:
+  push:
+    branches:
+      - main  # or whatever branch you use for GitHub Pages
+
+jobs:
+  build-entries:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies (if any)
+        run: pip install --upgrade pip
+
+      - name: Run the generate script
+        run: python generate.py
+
+      - name: Commit changes (if any)
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "chore: update compiled.html [skip ci]"
+          commit_user_name: "github-actions[bot]"
+          commit_user_email: "github-actions[bot]@users.noreply.github.com"
+          branch: "main"
