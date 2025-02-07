@@ -11,12 +11,12 @@
   
   .header {
     grid-area: header;
-    background: #ff0000;  /* sample styling */
+    background: #ffffff;  /* sample styling */
   }
   
   .leftSide {
     grid-area: leftSide;
-    background: #ff0000;  /* sample styling */
+    background: #ffffff;  /* sample styling */
   }
   
   .body {
@@ -25,11 +25,11 @@
   
   .rightSide {
     grid-area: rightSide;
-    background: #ff0000;  /* sample styling */
+    background: #ffffff;  /* sample styling */
   }
   
   .footer {
     grid-area: footer;
-    background: #ff0000;  /* sample styling */
+    background: #ffffff;  /* sample styling */
   }
   
