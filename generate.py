@@ -17,6 +17,7 @@ def main():
         out.write("<head>\n")
         out.write('  <meta charset="UTF-8" />\n')
         out.write("  <title>All Entries</title>\n")
+        out.write("  <link rel="stylesheet" href="style.css" />\n")
         out.write("</head>\n")
         out.write("<body>\n")
         out.write("  <h1>All Entries</h1>\n")
