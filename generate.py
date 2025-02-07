@@ -33,8 +33,16 @@ def main():
         # Header area
         out.write('  <div class="header"> </div>\n')
 
-        # Left side
-        out.write('  <div class="leftSide"> </div>\n')
+        # Left side - Table of Contents (Links to each title)
+        out.write('  <div class="leftSide">\n')
+        out.write("    <h3>Table of Contents</h3>\n")
+        out.write("    <ul>\n")
+        for row in rows:
+            title = row["title"]
+            id_name = title.replace(" ", "_").lower()  # Create an HTML-safe ID
+            out.write(f'    <li><a href="#{id_name}">{title}</a></li>\n')
+        out.write("    </ul>\n")
+        out.write("  </div>\n")
 
         # Body area
         out.write('  <div class="body">\n')

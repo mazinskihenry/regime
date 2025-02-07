@@ -16,7 +16,27 @@
   
   .leftSide {
     grid-area: leftSide;
-    background: #ffffff;  /* sample styling */
+    background: #f8f9fa;
+    padding: 15px;
+    border-right: 2px solid #ddd;
+  }
+  
+  .leftSide ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .leftSide li {
+    margin: 5px 0;
+  }
+  
+  .leftSide a {
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  .leftSide a:hover {
+    text-decoration: underline;
   }
   
   .body {
