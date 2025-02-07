@@ -29,7 +29,7 @@ def main():
         out.write('  <meta charset="UTF-8" />\n')
         out.write('  <meta name="viewport" content="width=device-width, initial-scale=1">\n')
         out.write("  <title>Regime Record</title>\n")
-        out.write('  <link rel="stylesheet" href="style.css" />\n')
+        out.write('  <link rel="stylesheet" href="frontpage.css" />\n')
         out.write("</head>\n")
         out.write("<body>\n")
 
