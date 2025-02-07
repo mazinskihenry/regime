@@ -5,7 +5,7 @@
       "header body body" auto
       "leftSide body body" 1fr
       "footer footer footer" auto
-      / 1fr 4fr 1fr; /* Adjusted column widths */
+      / 0.5fr 4fr 1fr; /* Adjusted column widths */
     gap: 0px;
 }
   
@@ -63,12 +63,11 @@
     width: 100%;
   }
 
-  
   .body h2 {
     position: sticky;
     top: 0;
     background: white;  /* Ensures the title is readable */
-    padding: 5px 0;
+    padding: 10px 10px;
     z-index: 10;  /* Ensures the title stays above other elements */
     border-bottom: 2px solid #ddd;  /* Optional: Adds a visual separator */
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
