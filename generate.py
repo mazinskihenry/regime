@@ -36,13 +36,13 @@ def main():
         out.write('<section class="layout">\n')
 
         out.write('  <div class="header">\n')
-        out.write('    <h1>The Regime Project</h1>\n')
+        out.write('    <h1>"Regime"</h1>\n')
         out.write('    <p>By Zeruel</p>\n')
         out.write('  </div>\n')
 
         # Left side - Table of Contents (Links to each title)
         out.write('  <div class="leftSide">\n')
-        out.write("    <h3>Table of Contents</h3>\n")
+        out.write("    <h3>Dates</h3>\n")
         out.write("    <ul>\n")
         for row in rows:
             title = row["title"]
