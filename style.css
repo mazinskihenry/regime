@@ -9,10 +9,25 @@
     gap: 100px;
 }
   
-  .header {
-    grid-area: header;
-    background: #ffffff;  /* sample styling */
+.header {
+    text-align: center;
+    padding: 10px;
+    background: #f8f9fa;
+    border-bottom: 2px solid #ddd;
   }
+  
+  .header h1 {
+    margin: 0;
+    font-size: 2em;
+  }
+  
+  .header h3 {
+    margin: 0;
+    font-size: 1em;
+    font-weight: normal;
+    color: #555;
+  }
+  
   
   .leftSide {
     grid-area: leftSide;
