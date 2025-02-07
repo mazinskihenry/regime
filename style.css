@@ -76,8 +76,24 @@
 
   .rightSide {
     grid-area: rightSide;
-    background: #ffffff;  /* sample styling */
-  }
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: auto; /* Adjust width automatically */
+    height: 100vh; /* Make it fill the full viewport height */
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fixed-image {
+    max-width: 100%; /* Ensures it doesn't overflow */
+    height: 100vh; /* Makes the image fill the entire height */
+    object-fit: cover; /* Ensures the image scales properly */
+}
+
+
   
   .footer {
     grid-area: footer;

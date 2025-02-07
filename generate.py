@@ -76,8 +76,10 @@ def main():
             count += 1
         out.write('  </div>\n')  # close .body
 
-        # Right side
-        out.write('  <div class="rightSide"></div>\n')
+        out.write('  <div class="rightSide">\n')
+        out.write('    <img src="WhiteHouse.jpg" alt="Description" class="fixed-image">\n')
+        out.write('  </div>\n')
+
 
         # Footer
         out.write('  <div class="footer"></div>\n')
