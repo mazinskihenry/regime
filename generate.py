@@ -6,7 +6,7 @@ import re
 
 CSV_FILE = "files.csv"        # CSV with columns: filename, title
 ENTRIES_FOLDER = "entries"    # Folder containing .txt files
-OUTPUT_FILE = "index.html"    # The final generated HTML file
+OUTPUT_FILE = "website/index.html"    # The final generated HTML file
 
 def generate_id(title):
     """Convert a title into a valid HTML ID"""
