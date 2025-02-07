@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
-
 import os
 
 ENTRIES_FOLDER = "entries"
-OUTPUT_FILE = "index.html"
+OUTPUT_FILE = "compiled.html"
 
 def main():
     # 1. Get all .txt filenames in 'entries/' (skipping non-txt)
@@ -17,7 +16,8 @@ def main():
         out.write("<head>\n")
         out.write('  <meta charset="UTF-8" />\n')
         out.write("  <title>All Entries</title>\n")
-        out.write("  <link rel="stylesheet" href="style.css" />\n")
+        # FIXED: use single quotes for the entire string
+        out.write('  <link rel="stylesheet" href="style.css" />\n')
         out.write("</head>\n")
         out.write("<body>\n")
         out.write("  <h1>All Entries</h1>\n")
@@ -28,9 +28,7 @@ def main():
             with open(file_path, "r", encoding="utf-8") as f:
                 content = f.read()
 
-            # You might want to escape or wrap content in <pre> tags
-            # Here we'll just drop it in a div
-            out.write(f"  <div style='margin-bottom:1em;'>\n")
+            out.write("  <div style='margin-bottom:1em;'>\n")
             out.write(f"    <h2>{txt_file}</h2>\n")  # optional heading
             # Convert newlines in text to <br> for display
             html_content = content.replace("\n", "<br>\n")
