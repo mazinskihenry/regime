@@ -31,10 +31,10 @@ def main():
         out.write('<section class="layout">\n')
 
         # Header area
-        out.write('  <div class="header">Header content here</div>\n')
+        out.write('  <div class="header"> </div>\n')
 
         # Left side
-        out.write('  <div class="leftSide">Left side content here</div>\n')
+        out.write('  <div class="leftSide"> </div>\n')
 
         # Body area – we’ll insert text from each CSV row
         out.write('  <div class="body">\n')
@@ -62,10 +62,10 @@ def main():
         out.write('  </div>\n')  # close .body
 
         # Right side
-        out.write('  <div class="rightSide">Right side content here</div>\n')
+        out.write('  <div class="rightSide"> </div>\n')
 
         # Footer
-        out.write('  <div class="footer">Footer content here</div>\n')
+        out.write('  <div class="footer"> </div>\n')
 
         out.write('</section>\n')  # close .layout
         out.write("</body>\n")
