@@ -6,14 +6,14 @@
       "leftSide body body" 1fr
       "footer footer footer" auto
       / 1fr 4fr 1fr; /* Adjusted column widths */
-    gap: 100px;
+    gap: 0px;
 }
   
   .header {
     text-align: center;
     padding: 15px;
     background: #f8f9fa;
-    border-bottom: 2px solid #ddd;
+    border-right: 2px solid #ddd;
   }
   
   .header h1 {
@@ -59,7 +59,7 @@
   
   .body {
     grid-area: body;
-    padding: 20px;
+    padding: 20px 20px;
     width: 100%;
   }
 
