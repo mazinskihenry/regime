@@ -31,41 +31,43 @@ def main():
         out.write('<section class="layout">\n')
 
         # Header area
-        out.write('  <div class="header"> </div>\n')
+        out.write('  <div class="header"></div>\n')
 
         # Left side
-        out.write('  <div class="leftSide"> </div>\n')
+        out.write('  <div class="leftSide"></div>\n')
 
-        # Body area – we’ll insert text from each CSV row
+        # Body area
         out.write('  <div class="body">\n')
         count = 0
         for row in rows:
             filename = row["filename"]
             title = row["title"]
             file_path = os.path.join(ENTRIES_FOLDER, filename)
+
+            # Check if the file actually exists
             if not os.path.exists(file_path):
-                # If the .txt file doesn’t exist, skip or handle the error
-                out.write(f"<p>Warning: {filename} not found.</p>\n")
+                out.write(f"<p style='color:red;'>Warning: {filename} not found.</p>\n")
                 continue
 
+            # Read the .txt file content
             with open(file_path, "r", encoding="utf-8") as f:
                 content = f.read()
 
-            # Replace line breaks with <br> for display
+            # Convert newlines to <br> for HTML display
             html_content = content.replace("\n", "<br>\n")
 
-            # Use the "title" from the CSV instead of the file name
-            out.write(f'    <h2>{title}</h2>\n')
-            out.write(f'    <div class="entry">{html_content}</div>\n')
-            out.write("    <hr>\n")  # a separator line, optional
+            # Use the CSV "title" as heading instead of the filename
+            out.write(f"    <h2>{title}</h2>\n")
+            out.write(f"    <div class=\"entry\">{html_content}</div>\n")
+            out.write("    <hr>\n")  # optional separator
             count += 1
         out.write('  </div>\n')  # close .body
 
         # Right side
-        out.write('  <div class="rightSide"> </div>\n')
+        out.write('  <div class="rightSide"></div>\n')
 
         # Footer
-        out.write('  <div class="footer"> </div>\n')
+        out.write('  <div class="footer"></div>\n')
 
         out.write('</section>\n')  # close .layout
         out.write("</body>\n")
