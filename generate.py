@@ -9,7 +9,9 @@ ENTRIES_FOLDER = "entries"    # Folder containing .txt files
 OUTPUT_FILE = "index.html"    # The final generated HTML file
 
 def generate_id(title):
-    return re.sub(r'[^a-zA-Z0-9-]', '-', title.lower().strip())
+    """Convert a title into a valid HTML ID"""
+    id_name = re.sub(r'[^a-zA-Z0-9]+', '-', title.lower().strip())  # Replace spaces & special chars with "-"
+    return id_name.strip("-")  # Ensure no leading/trailing hyphens
 
 def main():
     # 1. Read the CSV rows into a list of dicts
@@ -17,8 +19,7 @@ def main():
     with open(CSV_FILE, "r", encoding="utf-8") as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
-            # row["filename"] and row["title"] will be read from the CSV
-            rows.append(row)
+            rows.append(row)  # Append row to list
 
     # 2. Create or overwrite index.html
     with open(OUTPUT_FILE, "w", encoding="utf-8") as out:
@@ -35,7 +36,7 @@ def main():
         out.write('<section class="layout">\n')
 
         # Header area
-        out.write('  <div class="header"> </div>\n')
+        out.write('  <div class="header"></div>\n')
 
         # Left side - Table of Contents (Links to each title)
         out.write('  <div class="leftSide">\n')
@@ -43,7 +44,7 @@ def main():
         out.write("    <ul>\n")
         for row in rows:
             title = row["title"]
-            id_name = re.sub(r'[^a-zA-Z0-9-]', '-', title.lower().strip())
+            id_name = generate_id(title)
             out.write(f'    <li><a href="#{id_name}">{title}</a></li>\n')
         out.write("    </ul>\n")
         out.write("  </div>\n")
@@ -69,7 +70,7 @@ def main():
             # Write the heading with the ID
             out.write(f'    <h2 id="{id_name}">{title}</h2>\n')
             out.write(f'    <div class="entry">{content.replace("\n", "<br>\n")}</div>\n')
-            out.write("    <hr>\n")  # optional separator line
+            out.write("    <hr>\n")  # Optional separator line
             count += 1
         out.write('  </div>\n')  # close .body
 
