@@ -70,9 +70,17 @@ def main():
             # Convert title into a valid ID
             id_name = generate_id(title)
 
-            # Wrap the header and content in a section container with the id on the section
+            # Start the section container with the id on the section
             out.write(f'    <section class="section" id="{id_name}">\n')
-            out.write(f'      <h2>{title}</h2>\n')
+            
+            # Check if an archive file is provided
+            archive = row.get("archive", "0")
+            if archive != "0":
+                # Add an archive link with the text " - Archive" after the title
+                out.write(f'      <h2>{title} <a href="{archive}">- Archive</a></h2>\n')
+            else:
+                out.write(f'      <h2>{title}</h2>\n')
+            
             out.write(f'      <div class="entry">{content.replace("\n", "<br>\n")}</div>\n')
             out.write('    </section>\n')
         out.write('  </div>\n')  # close .body
