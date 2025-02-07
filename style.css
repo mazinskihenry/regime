@@ -6,7 +6,7 @@
       "leftSide body rightSide" 1fr
       "footer footer footer" auto
       / auto 1fr auto;
-    gap: 8px;
+    gap: 0px;
   }
   
   .header {
