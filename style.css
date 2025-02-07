@@ -5,8 +5,8 @@
       "header header header" auto
       "leftSide body rightSide" 1fr
       "footer footer footer" auto
-      / 2fr 4fr 2fr; /* Adjusted column widths */
-    gap: 5px;
+      / 1fr 4fr 1fr; /* Adjusted column widths */
+    gap: 100px;
 }
   
   .header {
