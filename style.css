@@ -2,8 +2,8 @@
     width: 100%;
     display: grid;
     grid:
-      "header body body" auto
-      "leftSide body body" 1fr
+      "header body rightSide" auto
+      "leftSide body rightSide" 1fr
       "footer footer footer" auto
       / 0.5fr 4fr 1fr; /* Adjusted column widths */
     gap: 0px;
