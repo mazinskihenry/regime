@@ -1,22 +1,28 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 import os
+import csv
 
-ENTRIES_FOLDER = "entries"
-OUTPUT_FILE = "index.html"
+CSV_FILE = "files.csv"        # CSV with columns: filename, title
+ENTRIES_FOLDER = "entries"    # Folder containing .txt files
+OUTPUT_FILE = "index.html"    # The final generated HTML file
 
 def main():
-    # 1. Get all .txt filenames in 'entries/' (skipping non-txt)
-    txt_files = [f for f in os.listdir(ENTRIES_FOLDER) if f.endswith(".txt")]
-    txt_files.sort()  # Optional: sort them alphabetically
+    # 1. Read the CSV rows into a list of dicts
+    rows = []
+    with open(CSV_FILE, "r", encoding="utf-8") as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            # row["filename"] and row["title"] will be read from the CSV
+            rows.append(row)
 
-    # 2. Create or overwrite compiled.html
+    # 2. Create or overwrite index.html
     with open(OUTPUT_FILE, "w", encoding="utf-8") as out:
         out.write("<!DOCTYPE html>\n")
         out.write("<html>\n")
         out.write("<head>\n")
         out.write('  <meta charset="UTF-8" />\n')
         out.write("  <title>All Entries</title>\n")
-        # Link to your CSS file
         out.write('  <link rel="stylesheet" href="style.css" />\n')
         out.write("</head>\n")
         out.write("<body>\n")
@@ -30,20 +36,29 @@ def main():
         # Left side
         out.write('  <div class="leftSide">Left side content here</div>\n')
 
-        # Body area
+        # Body area – we’ll insert text from each CSV row
         out.write('  <div class="body">\n')
-        for txt_file in txt_files:
-            file_path = os.path.join(ENTRIES_FOLDER, txt_file)
+        count = 0
+        for row in rows:
+            filename = row["filename"]
+            title = row["title"]
+            file_path = os.path.join(ENTRIES_FOLDER, filename)
+            if not os.path.exists(file_path):
+                # If the .txt file doesn’t exist, skip or handle the error
+                out.write(f"<p>Warning: {filename} not found.</p>\n")
+                continue
+
             with open(file_path, "r", encoding="utf-8") as f:
                 content = f.read()
 
-            # Replace line breaks with <br> tags (optional)
+            # Replace line breaks with <br> for display
             html_content = content.replace("\n", "<br>\n")
 
-            # If you want to display the filename as a heading, you can do so:
-            out.write(f'    <h2>{txt_file}</h2>\n')
+            # Use the "title" from the CSV instead of the file name
+            out.write(f'    <h2>{title}</h2>\n')
             out.write(f'    <div class="entry">{html_content}</div>\n')
-            out.write("<hr>\n")  # a separator line, optional
+            out.write("    <hr>\n")  # a separator line, optional
+            count += 1
         out.write('  </div>\n')  # close .body
 
         # Right side
@@ -56,7 +71,7 @@ def main():
         out.write("</body>\n")
         out.write("</html>\n")
 
-    print(f"Generated {OUTPUT_FILE} with {len(txt_files)} text files.")
+    print(f"Generated {OUTPUT_FILE} with {count} text files from CSV.")
 
 if __name__ == "__main__":
     main()
