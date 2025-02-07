@@ -8,20 +8,6 @@
       / 0.5fr 4fr 1fr; /* Adjusted column widths */
     gap: 0px;
 }
-  
-@media (max-width: 768px) {
-    .layout {
-        grid:
-          "header body body" auto 
-          "leftSide body body" 1fr
-          "footer footer footer" auto
-          / 0.5fr 4fr 1fr; /* Adjusted column widths for mobile */
-    }
-
-    .rightSide {
-        display: none;  /* Completely hide .rightSide */
-    }
-}
 
   .header {
     text-align: center;
@@ -113,4 +99,18 @@
     grid-area: footer;
     background: #ffffff;  /* sample styling */
   }
+
+  @media (max-width: 768px) {
+    .layout {
+        grid:
+          "header body body" auto 
+          "leftSide body body" 1fr
+          "footer footer footer" auto
+          / 0.5fr 4fr 1fr; /* Adjusted column widths for mobile */
+    }
+
+    .rightSide {
+        display: none;  /* Completely hide .rightSide */
+    }
+}
   
