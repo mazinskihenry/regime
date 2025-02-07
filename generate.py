@@ -10,8 +10,8 @@ OUTPUT_FILE = "index.html"    # The final generated HTML file
 
 def generate_id(title):
     """Convert a title into a valid HTML ID"""
-    id_name = re.sub(r'[^a-zA-Z0-9]+', '-', title.lower().strip())  # Replace spaces & special chars with "-"
-    return id_name.strip("-")  # Ensure no leading/trailing hyphens
+    id_name = re.sub(r'[^a-zA-Z0-9]+', '-', title.lower().strip())
+    return id_name.strip("-")
 
 def main():
     # 1. Read the CSV rows into a list of dicts
@@ -19,7 +19,7 @@ def main():
     with open(CSV_FILE, "r", encoding="utf-8") as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
-            rows.append(row)  # Append row to list
+            rows.append(row)
 
     # 2. Create or overwrite index.html
     with open(OUTPUT_FILE, "w", encoding="utf-8") as out:
@@ -52,9 +52,8 @@ def main():
         out.write("    </ul>\n")
         out.write("  </div>\n")
 
-        # Body area
+        # Body area with each section wrapped in its own container
         out.write('  <div class="body">\n')
-        count = 0
         for row in rows:
             filename = row["filename"]
             title = row["title"]
@@ -70,18 +69,18 @@ def main():
             # Convert title into a valid ID
             id_name = generate_id(title)
 
-            # Write the heading with the ID
-            out.write(f'    <h2 id="{id_name}">{title}</h2>\n')
-            out.write(f'    <div class="entry">{content.replace("\n", "<br>\n")}</div>\n')
-            out.write("    <hr>\n")  # Optional separator line
-            count += 1
+            # Wrap the header and content in a section container
+            out.write('    <section class="section">\n')
+            out.write(f'      <h2 id="{id_name}">{title}</h2>\n')
+            out.write(f'      <div class="entry">{content.replace("\n", "<br>\n")}</div>\n')
+            out.write('    </section>\n')
         out.write('  </div>\n')  # close .body
 
         out.write('  <div class="rightSide">\n')
         out.write('    <img src="WhiteHouse.jpg" alt="Description" class="fixed-image">\n')
         out.write('  </div>\n')
 
-        # Add this check to remove .rightSide for mobile users
+        # Mobile check to remove .rightSide if necessary
         out.write('<script>\n')
         out.write('  if (window.innerWidth <= 768) {\n')
         out.write('    document.querySelector(".rightSide").remove();\n')
@@ -95,7 +94,7 @@ def main():
         out.write("</body>\n")
         out.write("</html>\n")
 
-    print(f"Generated {OUTPUT_FILE} with {count} text files from CSV.")
+    print(f"Generated {OUTPUT_FILE} with {len(rows)} text files from CSV.")
 
 if __name__ == "__main__":
     main()

@@ -74,6 +74,22 @@
     transition: all 0.3s ease-in-out;
   }  
 
+  .section {
+    position: relative;
+    margin-bottom: 2em; /* Optional: spacing between sections */
+}
+
+.section h2 {
+    position: sticky;
+    top: 0;
+    background: white;
+    padding: 10px;
+    border-bottom: 2px solid #ddd;
+    z-index: 1;
+    transition: all 0.3s ease-in-out;
+}
+
+
   .rightSide {
     grid-area: rightSide;
     position: fixed;
