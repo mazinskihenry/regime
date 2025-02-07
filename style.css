@@ -106,7 +106,7 @@
           "header body" auto 
           "leftSide body" 1fr
           "footer footer" auto
-          / 0.5fr 5.5fr; /* Left and right column widths */
+          / 0.8fr 5.5fr; /* Left and right column widths */
         column-gap: 20px; /* Adds space between leftSide and body */
     }
 
@@ -120,7 +120,7 @@
     }
 
     .leftSide {
-        padding-right: 10px; /* Optional: Adds more spacing within .leftSide */
+        padding-right: 5px; /* Optional: Adds more spacing within .leftSide */
     }
 }
 
