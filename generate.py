@@ -8,6 +8,9 @@ CSV_FILE = "files.csv"        # CSV with columns: filename, title
 ENTRIES_FOLDER = "entries"    # Folder containing .txt files
 OUTPUT_FILE = "index.html"    # The final generated HTML file
 
+def generate_id(title):
+    return re.sub(r'[^a-zA-Z0-9-]', '-', title.lower().strip())
+
 def main():
     # 1. Read the CSV rows into a list of dicts
     rows = []
@@ -53,22 +56,20 @@ def main():
             title = row["title"]
             file_path = os.path.join(ENTRIES_FOLDER, filename)
 
-            # Check if the file actually exists
             if not os.path.exists(file_path):
                 out.write(f"<p style='color:red;'>Warning: {filename} not found.</p>\n")
                 continue
 
-            # Read the .txt file content
             with open(file_path, "r", encoding="utf-8") as f:
                 content = f.read()
 
-            # Convert newlines to <br> for HTML display
-            html_content = content.replace("\n", "<br>\n")
+            # Convert title into a valid ID
+            id_name = generate_id(title)
 
-            # Use the CSV "title" as heading instead of the filename
-            out.write(f"    <h2>{title}</h2>\n")
-            out.write(f"    <div class=\"entry\">{html_content}</div>\n")
-            out.write("    <hr>\n")  # optional separator
+            # Write the heading with the ID
+            out.write(f'    <h2 id="{id_name}">{title}</h2>\n')
+            out.write(f'    <div class="entry">{content.replace("\n", "<br>\n")}</div>\n')
+            out.write("    <hr>\n")  # optional separator line
             count += 1
         out.write('  </div>\n')  # close .body
 
