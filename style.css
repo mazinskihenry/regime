@@ -3,11 +3,11 @@
     display: grid;
     grid:
       "header header header" auto
-      "leftSide body body" 1fr
+      "leftSide body rightSide" 1fr
       "footer footer footer" auto
-      / auto 1fr auto;
+      / 2fr 4fr 2fr; /* Adjusted column widths */
     gap: 0px;
-  }
+}
   
   .header {
     grid-area: header;
