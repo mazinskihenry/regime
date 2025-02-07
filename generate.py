@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import os
 import csv
+import re
 
 CSV_FILE = "files.csv"        # CSV with columns: filename, title
 ENTRIES_FOLDER = "entries"    # Folder containing .txt files
@@ -39,7 +40,7 @@ def main():
         out.write("    <ul>\n")
         for row in rows:
             title = row["title"]
-            id_name = title.replace(" ", "_").lower()  # Create an HTML-safe ID
+            id_name = re.sub(r'[^a-zA-Z0-9-]', '-', title.lower().strip())
             out.write(f'    <li><a href="#{id_name}">{title}</a></li>\n')
         out.write("    </ul>\n")
         out.write("  </div>\n")
