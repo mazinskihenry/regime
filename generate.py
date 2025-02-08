@@ -36,28 +36,12 @@ def main():
         # 3. Start the grid layout
         out.write('<section class="layout">\n')
 
-        # Mobile Navigation (Hamburger Menu)
-        out.write('  <div class="mobile-menu">\n')
-        out.write('    <h2>Site Menu</h2>\n')
-        out.write('    <span class="menu-icon" onclick="toggleMenu()">?</span>\n')
-        out.write('  </div>\n')
-
-        # Dropdown menu (hidden by default)
-        out.write('  <div class="dropdown-menu" id="dropdownMenu">\n')
-        out.write("    <ul>\n")
-        for row in rows:
-            title = row["title"]
-            id_name = generate_id(title)
-            out.write(f'      <li><a href="#{id_name}">{title}</a></li>\n')
-        out.write("    </ul>\n")
-        out.write("  </div>\n")
-
         out.write('  <div class="header">\n')
         out.write('    <h1>"Regime"</h1>\n')
         out.write('    <p>By Zeruel</p>\n')
         out.write('  </div>\n')
 
-        # Left side - Table of Contents (Desktop)
+        # Left side - Table of Contents (Links to each title)
         out.write('  <div class="leftSide">\n')
         out.write("    <h3>Dates</h3>\n")
         out.write("    <ul>\n")
@@ -89,6 +73,9 @@ def main():
             out.write(f'    <section class="section" id="{id_name}">\n')
             
             # Check if an archive file is provided.
+            # If archive is not "0", then assume it contains only a base file name.
+            # Build the full archive link as:
+            # archive/{archiveName}/{archiveName}.html
             archive = row.get("archive", "0")
             if archive != "0":
                 archive_link = f"archive/{archive}/{archive}.html"
@@ -108,15 +95,6 @@ def main():
         out.write('<script>\n')
         out.write('  if (window.innerWidth <= 768) {\n')
         out.write('    document.querySelector(".rightSide").remove();\n')
-        out.write('    document.querySelector(".leftSide").remove();\n')
-        out.write('  }\n')
-        out.write('</script>\n')
-
-        # JavaScript for Mobile Menu
-        out.write('<script>\n')
-        out.write('  function toggleMenu() {\n')
-        out.write('    var menu = document.getElementById("dropdownMenu");\n')
-        out.write('    menu.classList.toggle("active");\n')
         out.write('  }\n')
         out.write('</script>\n')
 
