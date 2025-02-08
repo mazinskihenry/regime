@@ -9,31 +9,30 @@ html {
       "header body rightSide" auto
       "leftSide body rightSide" 1fr
       "footer footer footer" auto
-      / 0.5fr 4fr 1fr;
+      / 0.5fr 4fr 1fr; /* Adjusted column widths */
     gap: 0px;
 }
 
-.header {
+  .header {
     text-align: center;
     padding: 15px;
     background: #f8f9fa;
     border-right: 2px solid #ddd;
-    position: relative;
-}
-
-.header h1 {
+  }
+  
+  .header h1 {
     margin: 0;
     font-size: 2.5em;
-}
-
-.header p {
+  }
+  
+  .header p {
     margin: 5px 0 0;
     font-size: 1.2em;
     font-weight: normal;
     color: #666;
-}
+  }
 
-.leftSide {
+  .leftSide {
     grid-area: leftSide;
     background: #f8f9fa;
     padding: 6px;
@@ -43,38 +42,65 @@ html {
     height: 100vh;
     overflow-y: auto;
 }
-
-.leftSide ul {
+  
+  .leftSide ul {
     list-style-type: none;
     padding: 0;
-}
-
-.leftSide li {
+  }
+  
+  .leftSide li {
     margin: 5px 0;
-}
-
-.leftSide a {
+  }
+  
+  .leftSide a {
     text-decoration: none;
     color: #007bff;
-}
-
-.leftSide a:hover {
+  }
+  
+  .leftSide a:hover {
     text-decoration: underline;
-}
-
-.body {
+  }
+  
+  .body {
     grid-area: body;
-    padding: 20px;
+    padding: 20px 20px;
     width: 100%;
+  }
+
+  .body h2 {
+    position: sticky;
+    top: 0;
+    background: white;  /* Ensures the title is readable */
+    padding: 10px 10px;
+    z-index: 10;  /* Ensures the title stays above other elements */
+    border-bottom: 2px solid #ddd;  /* Optional: Adds a visual separator */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+  }  
+
+  .section {
+    position: relative;
+    margin-bottom: 2em; /* Optional: spacing between sections */
 }
 
-.rightSide {
+.section h2 {
+    position: sticky;
+    top: 0;
+    background: white;
+    padding: 10px;
+    border-bottom: 2px solid #ddd;
+    z-index: 1;
+    transition: all 0.3s ease-in-out;
+    scroll-margin-top: 20px; /* Adjust this value as needed */
+}
+
+  .rightSide {
     grid-area: rightSide;
     position: fixed;
     right: 0;
     top: 0;
-    width: auto;
-    height: 100vh;
+    width: auto; /* Adjust width automatically */
+    height: 100vh; /* Make it fill the full viewport height */
     background: white;
     display: flex;
     align-items: center;
@@ -82,28 +108,30 @@ html {
 }
 
 .fixed-image {
-    max-width: 100%;
-    height: 100vh;
-    object-fit: cover;
+    max-width: 100%; /* Ensures it doesn't overflow */
+    height: 100vh; /* Makes the image fill the entire height */
+    object-fit: cover; /* Ensures the image scales properly */
 }
 
-.footer {
+
+  
+  .footer {
     grid-area: footer;
-    background: #ffffff;
-}
+    background: #ffffff;  /* sample styling */
+  }
 
-/* Mobile styles */
-@media (max-width: 768px) {
+  @media (max-width: 768px) {
     .layout {
         grid:
           "header body" auto 
-          "body body" 1fr
-          "footer footer" auto
-          / 1fr 5fr;
+          "leftSide body" 1fr
+          "leftSide footer" auto
+          / 0.5fr 5.5fr; /* Left and right column widths */
+        column-gap: 10px; /* Adds space between leftSide and body */
     }
 
-    .rightSide, .leftSide {
-        display: none; /* Hide sidebars */
+    .rightSide {
+        display: none;  /* Completely hide .rightSide */
     }
 
     .body {
@@ -111,61 +139,7 @@ html {
         max-width: none;
     }
 
-    /* Mobile menu styles */
-    .mobile-menu {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px;
-        background: #f8f9fa;
-        border-bottom: 2px solid #ddd;
-        position: fixed;
-        top: 0;
-        width: 100%;
-        z-index: 1000;
-    }
-
-    .menu-icon {
-        font-size: 2em;
-        cursor: pointer;
-    }
-
-    .dropdown-menu {
-        display: none;
-        position: absolute;
-        top: 50px;
-        left: 0;
-        width: 100%;
-        background: white;
-        border-bottom: 2px solid #ddd;
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    .dropdown-menu ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    .dropdown-menu li {
-        padding: 10px;
-        border-bottom: 1px solid #ddd;
-        text-align: center;
-    }
-
-    .dropdown-menu a {
-        text-decoration: none;
-        color: #007bff;
-        font-size: 1.2em;
-    }
-
-    .dropdown-menu a:hover {
-        background: #f1f1f1;
-        display: block;
-    }
-
-    /* Show dropdown menu when active */
-    .dropdown-menu.active {
-        display: block;
+    .leftSide {
+        padding-right: 5px; /* Optional: Adds more spacing within .leftSide */
     }
 }
