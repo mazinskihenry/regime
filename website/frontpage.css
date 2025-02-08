@@ -34,15 +34,17 @@ html {
 }
 
 .leftSide {
-    grid-area: leftSide;
-    background: #f8f9fa;
-    padding: 6px;
-    border-right: 2px solid #ddd;
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    overflow-y: auto;
+  grid-area: leftSide;
+  background: #f8f9fa;
+  padding: 6px;
+  border-right: 2px solid #ddd;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  width: 200px; /* Set a width so it doesn’t shrink */
 }
+
 
 .leftSide ul {
     list-style-type: none;
@@ -69,17 +71,19 @@ html {
 }
 
 .rightSide {
-    grid-area: rightSide;
-    position: fixed;
-    right: 0;
-    top: 0;
-    width: auto;
-    height: 100vh;
-    background: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  grid-area: rightSide;
+  position: sticky;
+  right: 0;
+  top: 0;
+  width: 100%; /* Ensure it does not overflow */
+  max-width: 300px; /* Adjust width */
+  height: 100vh;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 
 .fixed-image {
     max-width: 100%;
@@ -90,6 +94,12 @@ html {
 .footer {
     grid-area: footer;
     background: #ffffff;
+}
+
+@media (min-width: 769px) {
+  .mobile-menu {
+      display: none; /* Hide mobile menu on desktop */
+  }
 }
 
 @media (max-width: 768px) {
