@@ -12,18 +12,14 @@
       <h1>"Regime"</h1>
       <p>By Zeruel</p>
     </div>
-    <!-- LEFT SIDE: Simple List of Links -->
+    <!-- LEFT SIDE: List of Links (Ordered as in the CSV file) -->
     <div class="leftSide">
       <h3>Dates</h3>
       <ul>
-        {% for year_item in years_data %}
-          {% for month_item in year_item.months %}
-            {% for post in month_item.posts %}
-              <li>
-                <a href="#{{ post.title | lower | replace(' ', '-') }}">{{ post.title }}</a>
-              </li>
-            {% endfor %}
-          {% endfor %}
+        {% for post in rows %}
+          <li>
+            <a href="#{{ post.title | lower | replace(' ', '-') }}">{{ post.title }}</a>
+          </li>
         {% endfor %}
       </ul>
     </div>
@@ -46,7 +42,7 @@
     </div>
     <!-- Scripts -->
     <script>
-      // Remove the right-side on smaller screens.
+      // Remove the right-side image on smaller screens
       if (window.innerWidth <= 768) {
         document.querySelector(".rightSide").remove();
       }
@@ -55,3 +51,4 @@
   </section>
 </body>
 </html>
+
