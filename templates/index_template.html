@@ -60,31 +60,20 @@
         document.querySelector(".rightSide").remove();
       }
     </script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-          // Toggle main accordion items (years) using scrollHeight
-          document.querySelectorAll(".accordion-button").forEach(function(button) {
-            button.addEventListener("click", function() {
-              this.classList.toggle("active");
-              var content = this.nextElementSibling;
-              if (window.getComputedStyle(content).maxHeight !== "0px") {
-                content.style.maxHeight = "0px";
-              } else {
-                content.style.maxHeight = content.scrollHeight + "px";
-              }
-            });
-          });
-          
-          // Toggle sub-accordion items (months) using a CSS class toggle
-          document.querySelectorAll(".accordion-subbutton").forEach(function(button) {
-            button.addEventListener("click", function() {
-              this.classList.toggle("active");
-              var content = this.nextElementSibling;
-              content.classList.toggle("open");
-            });
-          });
-        });
-        </script>                      
+    <div class="accordion-content">
+        {% for month_item in year_item.months %}
+          <div class="accordion-subitem">
+            <button class="accordion-subbutton">{{ month_item.month }}</button>
+            <div class="accordion-subcontent">
+              <ul>
+                {% for post in month_item.posts %}
+                  <li><a href="#{{ post.title | lower | replace(' ', '-') }}">{{ post.title }}</a></li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        {% endfor %}
+      </div>                         
     <div class="footer"></div>
   </section>
 </body>

@@ -1,87 +1,87 @@
 html {
     scroll-behavior: smooth;
-  }
+}
   
-  .layout {
-      width: 100%;
-      display: grid;
-      grid-template-columns: 0.5fr 4fr 1fr; /* Defines three columns */
-      grid-template-rows: auto 1fr auto; /* Defines header, main content, footer */
-      grid-template-areas:
-        "header header header"
-        "leftSide body rightSide"
-        "footer footer footer";
-      gap: 20px;
-      height: 100vh; /* Makes sure the layout spans the full height of the screen */
-  }
+.layout {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 0.5fr 4fr 1fr; /* Defines three columns */
+    grid-template-rows: auto 1fr auto; /* Defines header, main content, footer */
+    grid-template-areas:
+      "header header header"
+      "leftSide body rightSide"
+      "footer footer footer";
+    gap: 20px;
+    height: 100vh; /* Makes sure the layout spans the full height of the screen */
+}
   
-  /* Header */
-  .header {
-      grid-area: header;
-      text-align: center;
-      padding: 15px;
-      background: #f8f9fa;
-      border-bottom: 2px solid #ddd;
-  }
+/* Header */
+.header {
+    grid-area: header;
+    text-align: center;
+    padding: 15px;
+    background: #f8f9fa;
+    border-bottom: 2px solid #ddd;
+}
   
-  .header h1 {
-      margin: 0;
-      font-size: 2.5em;
-  }
+.header h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
   
-  .header p {
-      margin: 5px 0 0;
-      font-size: 1.2em;
-      font-weight: normal;
-      color: #666;
-  }
+.header p {
+    margin: 5px 0 0;
+    font-size: 1.2em;
+    font-weight: normal;
+    color: #666;
+}
   
-  /* Left Sidebar */
-  .leftSide {
-      grid-area: leftSide;
-      background: #f8f9fa;
-      padding: 10px;
-      border-right: 2px solid #ddd;
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      overflow-y: auto;
-      width: 100%; /* Ensures full width within the grid column */
-      display: flex;
-      flex-direction: column;
-  }
+/* Left Sidebar */
+.leftSide {
+    grid-area: leftSide;
+    background: #f8f9fa;
+    padding: 10px;
+    border-right: 2px solid #ddd;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    width: 100%; /* Ensures full width within the grid column */
+    display: flex;
+    flex-direction: column;
+}
   
-  .leftSide ul {
-      list-style-type: none;
-      padding: 0;
-  }
+.leftSide ul {
+    list-style-type: none;
+    padding: 0;
+}
   
-  .leftSide li {
-      margin: 5px 0;
-  }
+.leftSide li {
+    margin: 5px 0;
+}
   
-  .leftSide a {
-      text-decoration: none;
-      color: #007bff;
-  }
+.leftSide a {
+    text-decoration: none;
+    color: #007bff;
+}
   
-  .leftSide a:hover {
-      text-decoration: underline;
-  }
+.leftSide a:hover {
+    text-decoration: underline;
+}
   
 /* Accordion Styles for Left Sidebar */
 .accordion {
     margin-top: 10px;
-  }
+}
   
-  /* Each accordion item (year grouping) */
-  .accordion .accordion-item {
+/* Each accordion item (year grouping) */
+.accordion .accordion-item {
     border-bottom: 1px solid #ddd;
     margin-bottom: 5px;
-  }
+}
   
-  /* Accordion buttons (for years) */
-  .accordion-button {
+/* Accordion buttons (for years) */
+.accordion-button {
     background-color: #f8f9fa; /* same as leftSide background */
     color: #007bff;
     padding: 8px 10px;
@@ -92,28 +92,28 @@ html {
     cursor: pointer;
     outline: none;
     transition: background-color 0.2s ease;
-  }
+}
   
-  .accordion-button:hover,
-  .accordion-button.active {
+.accordion-button:hover,
+.accordion-button.active {
     background-color: #e2e6ea;
-  }
+}
   
-  /* Accordion content (collapsed by default) */
-  .accordion-content {
+/* Accordion content (collapsed by default) */
+.accordion-content {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
-  }
+}
   
-  /* Sub-item container for months */
-  .accordion-subitem {
+/* Sub-item container for months */
+.accordion-subitem {
     margin-left: 15px;
     margin-top: 5px;
-  }
+}
   
-  /* Sub-accordion buttons (for months) */
-  .accordion-subbutton {
+/* Sub-accordion buttons (for months) */
+.accordion-subbutton {
     background-color: #f8f9fa;
     color: #007bff;
     padding: 6px 10px;
@@ -124,119 +124,114 @@ html {
     cursor: pointer;
     outline: none;
     transition: background-color 0.2s ease;
-  }
+}
   
-  .accordion-subbutton:hover,
-  .accordion-subbutton.active {
+.accordion-subbutton:hover,
+.accordion-subbutton.active {
     background-color: #e2e6ea;
-  }
+}
   
-  /* Sub-accordion content (collapsed by default) */
-  .accordion-subcontent {
+/* Sub-accordion content (collapsed by default) */
+.accordion-subcontent {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
     padding-left: 15px;
     margin-top: 5px;
-  }
+}
   
-  .accordion-subcontent ul {
+.accordion-subcontent ul {
     list-style-type: none;
     padding: 0;
     margin: 5px 0;
-  }
+}
   
-  .accordion-subcontent {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.2s ease-out;
-  }
+/* When open, allow enough space for all content */
+/* !important overrides any inline styles */
+.accordion-subcontent.open {
+    max-height: 1000px !important; /* Adjust this value as needed */
+}
   
-  /* When open, allow enough space for all content */
-  .accordion-subcontent.open {
-    max-height: 1000px; /* Adjust this value as needed */
-  }
+/* Main Content */
+.body {
+    grid-area: body;
+    padding: 20px;
+    width: 100%;
+    overflow-y: auto; /* Ensures scrolling if content is too large */
+    display: flex;
+    flex-direction: column;
+}
   
-  /* Main Content */
-  .body {
-      grid-area: body;
-      padding: 20px;
-      width: 100%;
-      overflow-y: auto; /* Ensures scrolling if content is too large */
-      display: flex;
-      flex-direction: column;
-  }
+.body h2 {
+    position: sticky;
+    top: 0;
+    background: white;  /* Ensures the title is readable */
+    padding: 10px 10px;
+    z-index: 10;  /* Ensures the title stays above other elements */
+    border-bottom: 2px solid #ddd;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
   
-  .body h2 {
-      position: sticky;
-      top: 0;
-      background: white;  /* Ensures the title is readable */
-      padding: 10px 10px;
-      z-index: 10;  /* Ensures the title stays above other elements */
-      border-bottom: 2px solid #ddd;
-      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease-in-out;
-  }
+/* Sections */
+.section {
+    position: relative;
+    margin-bottom: 2em; /* Optional: spacing between sections */
+}
   
-  /* Sections */
-  .section {
-      position: relative;
-      margin-bottom: 2em; /* Optional: spacing between sections */
-  }
+.section h2 {
+    position: sticky;
+    top: 0;
+    background: white;
+    padding: 10px;
+    border-bottom: 2px solid #ddd;
+    z-index: 1;
+    transition: all 0.3s ease-in-out;
+    scroll-margin-top: 20px; /* Adjust this value as needed */
+}
   
-  .section h2 {
-      position: sticky;
-      top: 0;
-      background: white;
-      padding: 10px;
-      border-bottom: 2px solid #ddd;
-      z-index: 1;
-      transition: all 0.3s ease-in-out;
-      scroll-margin-top: 20px; /* Adjust this value as needed */
-  }
+/* Right Side - Left Blank */
+.rightSide {
+    grid-area: rightSide;
+    position: relative;
+    background: transparent;
+    display: block;
+}
   
-  /* Right Side - Left Blank */
-  .rightSide {
-      grid-area: rightSide;
-      position: relative;
-      background: transparent;
-      display: block;
-  }
+/* Remove any images in the right side */
+.fixed-image {
+    display: none;
+}
   
-  /* Remove any images in the right side */
-  .fixed-image {
-      display: none;
-  }
+/* Footer */
+.footer {
+    grid-area: footer;
+    background: #ffffff;
+    padding: 10px;
+    text-align: center;
+    border-top: 2px solid #ddd;
+}
   
-  /* Footer */
-  .footer {
-      grid-area: footer;
-      background: #ffffff;
-      padding: 10px;
-      text-align: center;
-      border-top: 2px solid #ddd;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-      .layout {
-          grid-template-columns: 1fr 5fr; /* Only two columns on smaller screens */
-          grid-template-areas:
+/* Responsive Design */
+@media (max-width: 768px) {
+    .layout {
+        grid-template-columns: 1fr 5fr; /* Only two columns on smaller screens */
+        grid-template-areas:
             "header header"
             "leftSide body"
             "footer footer";
-      }
+    }
   
-      .rightSide {
-          display: none;  /* Completely hide .rightSide on small screens */
-      }
+    .rightSide {
+        display: none;  /* Completely hide .rightSide on small screens */
+    }
   
-      .body {
-          width: 100%;
-          max-width: none;
-      }
+    .body {
+        width: 100%;
+        max-width: none;
+    }
   
-      .leftSide {
-          padding-right: 5px;
-      }
-  }
+    .leftSide {
+        padding-right: 5px;
+    }
+}
