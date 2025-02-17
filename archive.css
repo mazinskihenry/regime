@@ -99,9 +99,8 @@ html {
     background-color: #e2e6ea;
 }
   
-/* Accordion content (collapsed by default) */
+/* Accordion content defaults */
 .accordion-content {
-    max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
 }
@@ -131,18 +130,23 @@ html {
     background-color: #e2e6ea;
 }
   
+/* Accordion subcontent defaults */
 .accordion-subcontent {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.2s ease-out;
     padding-left: 15px;
     margin-top: 5px;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
 }
 
-.accordion-subcontent.open {
+/* Default collapsed state */
+.collapsed {
+    max-height: 0;
+}
+
+/* Open state for accordion panels */
+.open {
     max-height: 1000px !important; /* Adjust this value as needed */
 }
-
   
 /* Main Content */
 .body {

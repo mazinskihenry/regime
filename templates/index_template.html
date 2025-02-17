@@ -19,14 +19,16 @@
         {% for year_item in years_data %}
           <div class="accordion-item">
             <button class="accordion-button">{{ year_item.year }}</button>
-            <div class="accordion-content">
+            <div class="accordion-content collapsed">
               {% for month_item in year_item.months %}
                 <div class="accordion-subitem">
                   <button class="accordion-subbutton">{{ month_item.month }}</button>
-                  <div class="accordion-subcontent">
+                  <div class="accordion-subcontent collapsed">
                     <ul>
                       {% for post in month_item.posts %}
-                        <li><a href="#{{ post.title | lower | replace(' ', '-') }}">{{ post.title }}</a></li>
+                        <li>
+                          <a href="#{{ post.title | lower | replace(' ', '-') }}">{{ post.title }}</a>
+                        </li>
                       {% endfor %}
                     </ul>
                   </div>
@@ -67,10 +69,12 @@
           button.addEventListener("click", function() {
             this.classList.toggle("active");
             var content = this.nextElementSibling;
-            if (window.getComputedStyle(content).maxHeight !== "0px") {
-              content.style.maxHeight = "0px";
+            if (content.classList.contains("collapsed")) {
+              content.classList.remove("collapsed");
+              content.classList.add("open");
             } else {
-              content.style.maxHeight = content.scrollHeight + "px";
+              content.classList.remove("open");
+              content.classList.add("collapsed");
             }
           });
         });
@@ -79,7 +83,13 @@
           button.addEventListener("click", function() {
             this.classList.toggle("active");
             var content = this.nextElementSibling;
-            content.classList.toggle("open");
+            if (content.classList.contains("collapsed")) {
+              content.classList.remove("collapsed");
+              content.classList.add("open");
+            } else {
+              content.classList.remove("open");
+              content.classList.add("collapsed");
+            }
           });
         });
       });
