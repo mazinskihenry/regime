@@ -19,11 +19,11 @@
         {% for year_item in years_data %}
           <div class="accordion-item">
             <button class="accordion-button">{{ year_item.year }}</button>
-            <div class="accordion-content" style="max-height: 0; overflow: hidden;">
+            <div class="accordion-content">
               {% for month_item in year_item.months %}
                 <div class="accordion-subitem">
                   <button class="accordion-subbutton">{{ month_item.month }}</button>
-                  <div class="accordion-subcontent" style="max-height: 0; overflow: hidden;">
+                  <div class="accordion-subcontent">
                     <ul>
                       {% for post in month_item.posts %}
                         <li><a href="#{{ post.title | lower | replace(' ', '-') }}">{{ post.title }}</a></li>
