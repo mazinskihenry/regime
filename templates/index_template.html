@@ -63,37 +63,26 @@
       }
     </script>
     <script>
-      document.addEventListener("DOMContentLoaded", function() {
-        // Toggle main accordion items (years)
-        document.querySelectorAll(".accordion-button").forEach(function(button) {
-          button.addEventListener("click", function() {
-            this.classList.toggle("active");
-            var content = this.nextElementSibling;
-            if (content.classList.contains("collapsed")) {
-              content.classList.remove("collapsed");
-              content.classList.add("open");
-            } else {
-              content.classList.remove("open");
-              content.classList.add("collapsed");
-            }
+        // For year accordion buttons
+        var yearAcc = document.getElementsByClassName('accordion-year');
+        for (var i = 0; i < yearAcc.length; i++) {
+          yearAcc[i].addEventListener('click', function() {
+            this.classList.toggle('active');
+            var panel = this.nextElementSibling;
+            panel.style.display = (panel.style.display === 'block') ? 'none' : 'block';
           });
-        });
-        // Toggle sub-accordion items (months)
-        document.querySelectorAll(".accordion-subbutton").forEach(function(button) {
-          button.addEventListener("click", function() {
-            this.classList.toggle("active");
-            var content = this.nextElementSibling;
-            if (content.classList.contains("collapsed")) {
-              content.classList.remove("collapsed");
-              content.classList.add("open");
-            } else {
-              content.classList.remove("open");
-              content.classList.add("collapsed");
-            }
+        }
+      
+        // For month accordion buttons
+        var monthAcc = document.getElementsByClassName('accordion-month');
+        for (var j = 0; j < monthAcc.length; j++) {
+          monthAcc[j].addEventListener('click', function() {
+            this.classList.toggle('active');
+            var panel = this.nextElementSibling;
+            panel.style.display = (panel.style.display === 'block') ? 'none' : 'block';
           });
-        });
-      });
-    </script>
+        }
+      </script>      
     <div class="footer"></div>
   </section>
 </body>
