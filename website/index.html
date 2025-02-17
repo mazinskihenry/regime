@@ -2321,7 +2321,7 @@ Donald Trump formally declares a national emergency at the southern border. This
     </script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-          // Toggle main accordion items (years)
+          // Toggle main accordion items (years) using scrollHeight
           document.querySelectorAll(".accordion-button").forEach(function(button) {
             button.addEventListener("click", function() {
               this.classList.toggle("active");
@@ -2334,26 +2334,16 @@ Donald Trump formally declares a national emergency at the southern border. This
             });
           });
           
-          // Toggle sub-accordion items (months)
+          // Toggle sub-accordion items (months) using a CSS class toggle
           document.querySelectorAll(".accordion-subbutton").forEach(function(button) {
             button.addEventListener("click", function() {
               this.classList.toggle("active");
               var content = this.nextElementSibling;
-              if (window.getComputedStyle(content).maxHeight !== "0px") {
-                content.style.maxHeight = "0px";
-              } else {
-                // Get the <ul> inside the accordion subcontent, if present.
-                var list = content.querySelector("ul");
-                if (list) {
-                  content.style.maxHeight = list.scrollHeight + "px";
-                } else {
-                  content.style.maxHeight = content.scrollHeight + "px";
-                }
-              }
+              content.classList.toggle("open");
             });
           });
         });
-        </script>               
+        </script>                      
     <div class="footer"></div>
   </section>
 </body>
