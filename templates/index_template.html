@@ -70,12 +70,11 @@
               if (window.getComputedStyle(content).maxHeight !== "0px") {
                 content.style.maxHeight = "0px";
               } else {
-                // Use the first child’s scrollHeight if available
-                var child = content.firstElementChild;
-                content.style.maxHeight = (child ? child.scrollHeight : content.scrollHeight) + "px";
+                content.style.maxHeight = content.scrollHeight + "px";
               }
             });
           });
+          
           // Toggle sub-accordion items (months)
           document.querySelectorAll(".accordion-subbutton").forEach(function(button) {
             button.addEventListener("click", function() {
@@ -84,13 +83,18 @@
               if (window.getComputedStyle(content).maxHeight !== "0px") {
                 content.style.maxHeight = "0px";
               } else {
-                var child = content.firstElementChild;
-                content.style.maxHeight = (child ? child.scrollHeight : content.scrollHeight) + "px";
+                // Get the <ul> inside the accordion subcontent, if present.
+                var list = content.querySelector("ul");
+                if (list) {
+                  content.style.maxHeight = list.scrollHeight + "px";
+                } else {
+                  content.style.maxHeight = content.scrollHeight + "px";
+                }
               }
             });
           });
         });
-    </script>        
+        </script>               
     <div class="footer"></div>
   </section>
 </body>
