@@ -12,32 +12,20 @@
       <h1>"Regime"</h1>
       <p>By Zeruel</p>
     </div>
-    <!-- LEFT SIDE: Accordion Menu -->
+    <!-- LEFT SIDE: Simple List of Links -->
     <div class="leftSide">
       <h3>Dates</h3>
-      <div class="accordion">
+      <ul>
         {% for year_item in years_data %}
-          <div class="accordion-item">
-            <button class="accordion-button">{{ year_item.year }}</button>
-            <div class="accordion-content collapsed">
-              {% for month_item in year_item.months %}
-                <div class="accordion-subitem">
-                  <button class="accordion-subbutton">{{ month_item.month }}</button>
-                  <div class="accordion-subcontent collapsed">
-                    <ul>
-                      {% for post in month_item.posts %}
-                        <li>
-                          <a href="#{{ post.title | lower | replace(' ', '-') }}">{{ post.title }}</a>
-                        </li>
-                      {% endfor %}
-                    </ul>
-                  </div>
-                </div>
-              {% endfor %}
-            </div>
-          </div>
+          {% for month_item in year_item.months %}
+            {% for post in month_item.posts %}
+              <li>
+                <a href="#{{ post.title | lower | replace(' ', '-') }}">{{ post.title }}</a>
+              </li>
+            {% endfor %}
+          {% endfor %}
         {% endfor %}
-      </div>
+      </ul>
     </div>
     <!-- BODY: Main Content -->
     <div class="body">
@@ -58,31 +46,11 @@
     </div>
     <!-- Scripts -->
     <script>
+      // Remove the right-side on smaller screens.
       if (window.innerWidth <= 768) {
         document.querySelector(".rightSide").remove();
       }
     </script>
-    <script>
-        // For year accordion buttons
-        var yearAcc = document.getElementsByClassName('accordion-year');
-        for (var i = 0; i < yearAcc.length; i++) {
-          yearAcc[i].addEventListener('click', function() {
-            this.classList.toggle('active');
-            var panel = this.nextElementSibling;
-            panel.style.display = (panel.style.display === 'block') ? 'none' : 'block';
-          });
-        }
-      
-        // For month accordion buttons
-        var monthAcc = document.getElementsByClassName('accordion-month');
-        for (var j = 0; j < monthAcc.length; j++) {
-          monthAcc[j].addEventListener('click', function() {
-            this.classList.toggle('active');
-            var panel = this.nextElementSibling;
-            panel.style.display = (panel.style.display === 'block') ? 'none' : 'block';
-          });
-        }
-      </script>      
     <div class="footer"></div>
   </section>
 </body>
