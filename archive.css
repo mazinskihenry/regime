@@ -131,7 +131,6 @@ html {
     background-color: #e2e6ea;
 }
   
-/* Sub-accordion content (collapsed by default) */
 .accordion-subcontent {
     max-height: 0;
     overflow: hidden;
@@ -139,18 +138,11 @@ html {
     padding-left: 15px;
     margin-top: 5px;
 }
-  
-.accordion-subcontent ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 5px 0;
-}
-  
-/* When open, allow enough space for all content */
-/* !important overrides any inline styles */
+
 .accordion-subcontent.open {
     max-height: 1000px !important; /* Adjust this value as needed */
 }
+
   
 /* Main Content */
 .body {

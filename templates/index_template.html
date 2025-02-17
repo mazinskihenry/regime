@@ -65,12 +65,12 @@
           <div class="accordion-subitem">
             <button class="accordion-subbutton">{{ month_item.month }}</button>
             <div class="accordion-subcontent">
-              <ul>
-                {% for post in month_item.posts %}
-                  <li><a href="#{{ post.title | lower | replace(' ', '-') }}">{{ post.title }}</a></li>
-                {% endfor %}
-              </ul>
-            </div>
+                <ul>
+                  {% for post in month_item.posts %}
+                    <li><a href="#{{ post.title | lower | replace(' ', '-') }}">{{ post.title }}</a></li>
+                  {% endfor %}
+                </ul>
+              </div>                          
           </div>
         {% endfor %}
       </div>                         
