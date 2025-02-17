@@ -69,6 +69,84 @@ html {
       text-decoration: underline;
   }
   
+/* Accordion Styles for Left Sidebar */
+.accordion {
+    margin-top: 10px;
+  }
+  
+  /* Each accordion item (year grouping) */
+  .accordion .accordion-item {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 5px;
+  }
+  
+  /* Accordion buttons (for years) */
+  .accordion-button {
+    background-color: #f8f9fa; /* same as leftSide background */
+    color: #007bff;
+    padding: 8px 10px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    font-size: 1em;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.2s ease;
+  }
+  
+  .accordion-button:hover,
+  .accordion-button.active {
+    background-color: #e2e6ea;
+  }
+  
+  /* Accordion content (collapsed by default) */
+  .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+  }
+  
+  /* Sub-item container for months */
+  .accordion-subitem {
+    margin-left: 15px;
+    margin-top: 5px;
+  }
+  
+  /* Sub-accordion buttons (for months) */
+  .accordion-subbutton {
+    background-color: #f8f9fa;
+    color: #007bff;
+    padding: 6px 10px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    font-size: 0.95em;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.2s ease;
+  }
+  
+  .accordion-subbutton:hover,
+  .accordion-subbutton.active {
+    background-color: #e2e6ea;
+  }
+  
+  /* Sub-accordion content (collapsed by default) */
+  .accordion-subcontent {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    padding-left: 15px;
+    margin-top: 5px;
+  }
+  
+  .accordion-subcontent ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 5px 0;
+  }
+  
+
   /* Main Content */
   .body {
       grid-area: body;

@@ -67,8 +67,8 @@
           button.addEventListener("click", function() {
             this.classList.toggle("active");
             var content = this.nextElementSibling;
-            if (content.style.maxHeight) {
-              content.style.maxHeight = null;
+            if (window.getComputedStyle(content).maxHeight !== "0px") {
+              content.style.maxHeight = "0px";
             } else {
               content.style.maxHeight = content.scrollHeight + "px";
             }
@@ -79,8 +79,8 @@
           button.addEventListener("click", function() {
             this.classList.toggle("active");
             var content = this.nextElementSibling;
-            if (content.style.maxHeight) {
-              content.style.maxHeight = null;
+            if (window.getComputedStyle(content).maxHeight !== "0px") {
+              content.style.maxHeight = "0px";
             } else {
               content.style.maxHeight = content.scrollHeight + "px";
             }
