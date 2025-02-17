@@ -146,7 +146,17 @@ html {
     margin: 5px 0;
   }
   
-
+  .accordion-subcontent {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+  }
+  
+  /* When open, allow enough space for all content */
+  .accordion-subcontent.open {
+    max-height: 1000px; /* Adjust this value as needed */
+  }
+  
   /* Main Content */
   .body {
       grid-area: body;
