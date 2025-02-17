@@ -69,52 +69,6 @@ html {
       text-decoration: underline;
   }
   
-  /* Accordion Styles for the Left Sidebar */
-  .accordion .accordion-item {
-      margin-bottom: 5px;
-  }
-  
-  .accordion-button,
-  .accordion-subbutton {
-      background-color: #e2e2e2;
-      color: #333;
-      padding: 8px 10px;
-      width: 100%;
-      border: none;
-      text-align: left;
-      cursor: pointer;
-      outline: none;
-      transition: background-color 0.2s ease;
-      font-size: 1em;
-      margin-bottom: 2px;
-  }
-  
-  .accordion-button:hover,
-  .accordion-subbutton:hover {
-      background-color: #d0d0d0;
-  }
-  
-  .accordion-button.active,
-  .accordion-subbutton.active {
-      background-color: #c0c0c0;
-  }
-  
-  /* Start with accordion panels collapsed */
-  .accordion-content,
-  .accordion-subcontent {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.2s ease-out;
-  }
-  
-  /* Optional: style the inner lists within the accordion */
-  .accordion-content ul,
-  .accordion-subcontent ul {
-      list-style: none;
-      padding-left: 15px;
-      margin: 0;
-  }
-  
   /* Main Content */
   .body {
       grid-area: body;
@@ -198,4 +152,3 @@ html {
           padding-right: 5px;
       }
   }
-  
