@@ -55,20 +55,11 @@
                 </div>
               
                 <div class="accordion-subitem">
-                  <button class="accordion-subbutton">march</button>
+                  <button class="accordion-subbutton">februrary</button>
                   <div class="accordion-subcontent" style="max-height: 0; overflow: hidden;">
                     <ul>
                       
                         <li><a href="#february-16---day-28">February 16 - Day 28</a></li>
-                      
-                    </ul>
-                  </div>
-                </div>
-              
-                <div class="accordion-subitem">
-                  <button class="accordion-subbutton">februrary</button>
-                  <div class="accordion-subcontent" style="max-height: 0; overflow: hidden;">
-                    <ul>
                       
                         <li><a href="#february-15---day-27">February 15 - Day 27</a></li>
                       
@@ -2335,8 +2326,8 @@ Donald Trump formally declares a national emergency at the southern border. This
           button.addEventListener("click", function() {
             this.classList.toggle("active");
             var content = this.nextElementSibling;
-            if (content.style.maxHeight) {
-              content.style.maxHeight = null;
+            if (window.getComputedStyle(content).maxHeight !== "0px") {
+              content.style.maxHeight = "0px";
             } else {
               content.style.maxHeight = content.scrollHeight + "px";
             }
@@ -2347,8 +2338,8 @@ Donald Trump formally declares a national emergency at the southern border. This
           button.addEventListener("click", function() {
             this.classList.toggle("active");
             var content = this.nextElementSibling;
-            if (content.style.maxHeight) {
-              content.style.maxHeight = null;
+            if (window.getComputedStyle(content).maxHeight !== "0px") {
+              content.style.maxHeight = "0px";
             } else {
               content.style.maxHeight = content.scrollHeight + "px";
             }
