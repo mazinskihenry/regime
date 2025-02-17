@@ -49,7 +49,7 @@ html {
     width: 100%; /* Ensures full width within the grid column */
     display: flex;
     flex-direction: column;
-    font-size: 11px; /* Added font-size to make text smaller */
+    font-size: 15px; /* Added font-size to make text smaller */
 }
   
 .leftSide ul {
