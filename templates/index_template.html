@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Regime Record</title>
+  <link rel="stylesheet" href="frontpage.css" />
+</head>
+<body>
+  <section class="layout">
+    <div class="header">
+      <h1>"Regime"</h1>
+      <p>By Zeruel</p>
+    </div>
+    <!-- LEFT SIDE: Accordion Menu -->
+    <div class="leftSide">
+      <h3>Dates</h3>
+      <div class="accordion">
+        {% for year_item in years_data %}
+          <div class="accordion-item">
+            <button class="accordion-button">{{ year_item.year }}</button>
+            <div class="accordion-content" style="max-height: 0; overflow: hidden;">
+              {% for month_item in year_item.months %}
+                <div class="accordion-subitem">
+                  <button class="accordion-subbutton">{{ month_item.month }}</button>
+                  <div class="accordion-subcontent" style="max-height: 0; overflow: hidden;">
+                    <ul>
+                      {% for post in month_item.posts %}
+                        <li><a href="#{{ post.title | lower | replace(' ', '-') }}">{{ post.title }}</a></li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <!-- BODY: Main Content -->
+    <div class="body">
+      {% for post in rows %}
+        <section class="section" id="{{ post.title | lower | replace(' ', '-') }}">
+          {% if post.archive != "0" %}
+            <h2>{{ post.title }} <a href="archive/{{ post.archive }}/{{ post.archive }}.html">- Archive</a></h2>
+          {% else %}
+            <h2>{{ post.title }}</h2>
+          {% endif %}
+          <div class="entry">{{ post.content | replace("\n", "<br>\n") | safe }}</div>
+        </section>
+      {% endfor %}
+    </div>
+    <!-- RIGHT SIDE -->
+    <div class="rightSide">
+      <img src="WhiteHouse.jpg" alt="Description" class="fixed-image">
+    </div>
+    <!-- Scripts -->
+    <script>
+      if (window.innerWidth <= 768) {
+        document.querySelector(".rightSide").remove();
+      }
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        // Toggle main accordion items (years)
+        document.querySelectorAll(".accordion-button").forEach(function(button) {
+          button.addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.maxHeight) {
+              content.style.maxHeight = null;
+            } else {
+              content.style.maxHeight = content.scrollHeight + "px";
+            }
+          });
+        });
+        // Toggle sub-accordion items (months)
+        document.querySelectorAll(".accordion-subbutton").forEach(function(button) {
+          button.addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.maxHeight) {
+              content.style.maxHeight = null;
+            } else {
+              content.style.maxHeight = content.scrollHeight + "px";
+            }
+          });
+        });
+      });
+    </script>
+    <div class="footer"></div>
+  </section>
+</body>
+</html>
