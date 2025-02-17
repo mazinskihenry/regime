@@ -2320,33 +2320,36 @@ Donald Trump formally declares a national emergency at the southern border. This
       }
     </script>
     <script>
-      document.addEventListener("DOMContentLoaded", function() {
-        // Toggle main accordion items (years)
-        document.querySelectorAll(".accordion-button").forEach(function(button) {
-          button.addEventListener("click", function() {
-            this.classList.toggle("active");
-            var content = this.nextElementSibling;
-            if (window.getComputedStyle(content).maxHeight !== "0px") {
-              content.style.maxHeight = "0px";
-            } else {
-              content.style.maxHeight = content.scrollHeight + "px";
-            }
+        document.addEventListener("DOMContentLoaded", function() {
+          // Toggle main accordion items (years)
+          document.querySelectorAll(".accordion-button").forEach(function(button) {
+            button.addEventListener("click", function() {
+              this.classList.toggle("active");
+              var content = this.nextElementSibling;
+              if (window.getComputedStyle(content).maxHeight !== "0px") {
+                content.style.maxHeight = "0px";
+              } else {
+                // Use the first child’s scrollHeight if available
+                var child = content.firstElementChild;
+                content.style.maxHeight = (child ? child.scrollHeight : content.scrollHeight) + "px";
+              }
+            });
+          });
+          // Toggle sub-accordion items (months)
+          document.querySelectorAll(".accordion-subbutton").forEach(function(button) {
+            button.addEventListener("click", function() {
+              this.classList.toggle("active");
+              var content = this.nextElementSibling;
+              if (window.getComputedStyle(content).maxHeight !== "0px") {
+                content.style.maxHeight = "0px";
+              } else {
+                var child = content.firstElementChild;
+                content.style.maxHeight = (child ? child.scrollHeight : content.scrollHeight) + "px";
+              }
+            });
           });
         });
-        // Toggle sub-accordion items (months)
-        document.querySelectorAll(".accordion-subbutton").forEach(function(button) {
-          button.addEventListener("click", function() {
-            this.classList.toggle("active");
-            var content = this.nextElementSibling;
-            if (window.getComputedStyle(content).maxHeight !== "0px") {
-              content.style.maxHeight = "0px";
-            } else {
-              content.style.maxHeight = content.scrollHeight + "px";
-            }
-          });
-        });
-      });
-    </script>
+    </script>        
     <div class="footer"></div>
   </section>
 </body>
